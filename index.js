@@ -19,9 +19,6 @@ function submitData(userName, userEmail){
     .then(resp => resp.json())
     .then(userData => console.log(userData))
 }
-document.getElementById("submit").addEventListener("click", () => { 
-  submitData("Kelly", "kelly@gmail.com");
-});
 
 
 
