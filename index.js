@@ -1,24 +1,32 @@
 // Add your code here
-function submitData(userName, userEmail){
-    
-    let details = {
+function submitData(userName, userEmail) {
+  const details = {
     name: userName,
     email: userEmail,
-    }
+  };
 
-    const userDetails = {
-        method : 'POST',
-        headers :{
-            "Content-Type" : 'application/json',
-            "Accept" : "application/json"
-        },
-        body : JSON.stringify(details), 
-    }     
-
-    return fetch ("http://localhost:3000/users" , userDetails)
-    .then(resp => resp.json())
-    .then(userData => console.log(userData))
+  return fetch("http://localhost:3000/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(details),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const newId = document.createElement('p');
+      newId.textContent = data.id;
+      document.body.appendChild(newId);
+    })
+    .catch((error) => {
+      const errorMessage = document.createElement('p');
+      errorMessage.textContent = error.message;
+      document.body.appendChild(errorMessage);
+    });
 }
+
+
 
 
 
